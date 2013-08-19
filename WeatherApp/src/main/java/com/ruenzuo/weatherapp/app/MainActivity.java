@@ -1,5 +1,6 @@
-package com.ruenzuo.weatherapp;
+package com.ruenzuo.weatherapp.app;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -8,14 +9,16 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.view.GravityCompat;
-import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class MainActivity extends ActionBarActivity {
+import com.ruenzuo.weatherapp.R;
+import com.ruenzuo.weatherapp.fragments.ContentFragment;
+
+public class MainActivity extends ActionBarActivity implements ContentFragment.OnItemSelectedListener {
 
     private DrawerLayout drawerLayout;
     private ListView drawerList;
@@ -29,7 +32,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        currentTitle = drawerTitle = getTitle().toString();
+        currentTitle = getTitle().toString();
+        drawerTitle = getResources().getString(R.string.drawer_title);
         drawerOptions = getResources().getStringArray(R.array.drawer_options);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerList = (ListView) findViewById(R.id.left_drawer);
@@ -54,6 +58,31 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                if (drawerLayout.isDrawerOpen(drawerList)) {
+                    drawerLayout.closeDrawer(drawerList);
+                }
+                else {
+                    drawerLayout.openDrawer(drawerList);
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+    @Override
+    public void onContentItemSelected(int content) {
+        String detail = currentTitle + " Content: " + content;
+        Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+        intent.putExtra(DetailActivity.EXTRA_DETAIL, detail);
+        startActivity(intent);
+    }
+
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
 
         @Override
@@ -64,14 +93,12 @@ public class MainActivity extends ActionBarActivity {
     }
 
     private void selectItem(int position) {
-        Fragment fragment = new PlanetFragment();
+        Fragment fragment = new ContentFragment();
         Bundle args = new Bundle();
-        args.putInt(PlanetFragment.ARG_OPTION_NUMBER, position);
+        args.putInt(ContentFragment.ARG_OPTION_NUMBER, position);
         fragment.setArguments(args);
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-
         drawerList.setItemChecked(position, true);
         setTitle(drawerOptions[position]);
         drawerLayout.closeDrawer(drawerList);
@@ -93,26 +120,6 @@ public class MainActivity extends ActionBarActivity {
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         actionBarDrawerToggle.onConfigurationChanged(newConfig);
-    }
-
-
-    public static class PlanetFragment extends Fragment {
-
-        public static final String ARG_OPTION_NUMBER = "option_number";
-
-        public PlanetFragment() {
-
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.content_fragment, container, false);
-            int i = getArguments().getInt(ARG_OPTION_NUMBER);
-            String option = getResources().getStringArray(R.array.drawer_options)[i];
-            getActivity().setTitle(option);
-            return rootView;
-        }
-
     }
 
 }

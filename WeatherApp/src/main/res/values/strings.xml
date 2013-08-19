@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">WeatherApp</string>
+    <string name="drawer_title">Options</string>
     <string-array name="drawer_options">
         <item>Option 1</item>
         <item>Option 2</item>
         <item>Option 3</item>
         <item>Option 4</item>
+        <item>Option 5</item>
+        <item>Option 6</item>
+        <item>Option 7</item>
+        <item>Option 8</item>
+        <item>Option 9</item>
+        <item>Option 10</item>
     </string-array>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
