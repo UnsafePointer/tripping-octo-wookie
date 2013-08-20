@@ -11,14 +11,18 @@ import com.ruenzuo.weatherapp.R;
 
 public class DetailFragment extends Fragment {
 
+    public DetailFragment() {
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.detail_fragment, container, false);
     }
 
     public void setText(String item) {
-        TextView view = (TextView) getView().findViewById(R.id.txtDetail);
-        view.setText(item);
+        //TextView view = (TextView) getView().findViewById(R.id.txtDetail);
+        //view.setText(item);
     }
 
 }
