@@ -22,8 +22,6 @@ public class DetailActivity extends ActionBarActivity {
             String title = "Option: " + option + ", Detail: " + detail;
             getSupportActionBar().setTitle(title);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            TextView view = (TextView) findViewById(R.id.txtDetail);
-            view.setText("Detail: " + detail);
         }
     }
 

@@ -20,7 +20,7 @@ public class ContentFragment extends ListFragment {
     public static final String ARG_OPTION_NUMBER = "option_number";
 
     public interface OnItemSelectedListener {
-        public void onContentItemSelected(int content);
+        public void onContentItemSelected(int contentItem);
     }
 
     private OnItemSelectedListener listener;

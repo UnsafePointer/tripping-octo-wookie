@@ -1,4 +1,5 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
@@ -7,6 +8,7 @@
         android:id="@+id/detailFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        class="com.ruenzuo.weatherapp.fragments.DetailFragment" />
+        class="com.ruenzuo.weatherapp.fragments.DetailFragment"
+        tools:layout="@layout/fragment_detail"/>
 
-</LinearLayout> 
+</LinearLayout>

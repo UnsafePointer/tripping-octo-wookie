@@ -13,10 +13,10 @@ import com.ruenzuo.weatherapp.adapters.MenuAdapter;
 
 import java.util.Arrays;
 
-public class MenuFragment extends ListFragment{
+public class DrawerFragment extends ListFragment {
 
     public interface OnItemSelectedListener {
-        public void onMenuItemSelected(int option);
+        public void onDrawerItemSelected(int drawerItem);
     }
 
     private OnItemSelectedListener listener;
@@ -31,7 +31,7 @@ public class MenuFragment extends ListFragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_menu, container, false);
+        View view = inflater.inflate(R.layout.fragment_drawer, container, false);
         return view;
     }
 
@@ -42,7 +42,7 @@ public class MenuFragment extends ListFragment{
             listener = (OnItemSelectedListener)activity;
         } else {
             throw new ClassCastException(activity.toString()
-                    + " must implemenet MenuFragment.OnItemSelectedListener");
+                    + " must implemenet DrawerFragment.OnItemSelectedListener");
         }
     }
 
@@ -54,7 +54,7 @@ public class MenuFragment extends ListFragment{
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        listener.onMenuItemSelected(position);
+        listener.onDrawerItemSelected(position);
     }
 
 }
