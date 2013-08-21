@@ -6,10 +6,10 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.ruenzuo.weatherapp.R;
+import com.ruenzuo.weatherapp.fragments.ContentFragment;
+import com.ruenzuo.weatherapp.fragments.DetailFragment;
 
 public class DetailActivity extends ActionBarActivity {
-
-    public static final String EXTRA_DETAIL = "detail";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,12 +17,13 @@ public class DetailActivity extends ActionBarActivity {
         setContentView(R.layout.activity_detail);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            String detail = extras.getString(EXTRA_DETAIL);
-            String title = "Detail: " + detail;
+            int option = extras.getInt(ContentFragment.ARG_OPTION_NUMBER);
+            int detail = extras.getInt(DetailFragment.ARG_DETAIL_NUMBER);
+            String title = "Option: " + option + ", Detail: " + detail;
             getSupportActionBar().setTitle(title);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             TextView view = (TextView) findViewById(R.id.txtDetail);
-            view.setText(detail);
+            view.setText("Detail: " + detail);
         }
     }
 
