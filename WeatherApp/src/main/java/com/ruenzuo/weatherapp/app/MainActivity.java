@@ -35,7 +35,9 @@ public class MainActivity extends ActionBarActivity implements ContentFragment.O
         drawerTitle = getResources().getString(R.string.drawer_title);
         drawerOptions = getResources().getStringArray(R.array.menu_options);
         if ((screenType.equals("phone-port") ||
-             screenType.equals("phone-land"))) {
+             screenType.equals("phone-land") ||
+             screenType.equals("10-inch-tablet-port") ||
+             screenType.equals("7-inch-tablet-port") )) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
             drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -52,6 +54,10 @@ public class MainActivity extends ActionBarActivity implements ContentFragment.O
 
             };
             drawerLayout.setDrawerListener(actionBarDrawerToggle);
+            DetailFragment fragment = (DetailFragment) getSupportFragmentManager().findFragmentByTag("detailFragment");
+            if (fragment != null && fragment.isAdded()) {
+                getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+            }
         }
         else {
             setupDetailFragment();

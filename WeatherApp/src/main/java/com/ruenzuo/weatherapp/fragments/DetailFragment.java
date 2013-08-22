@@ -27,7 +27,7 @@ public class DetailFragment extends Fragment {
         if (args != null) {
             int detail = args.getInt(ARG_DETAIL_NUMBER);
             TextView textView = (TextView) view.findViewById(R.id.txtDetail);
-            textView.setText("Detail: " + detail);
+            textView.setText("Detail: " + (detail + 1));
         }
         return view;
     }

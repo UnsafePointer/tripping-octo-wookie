@@ -19,11 +19,11 @@ public class DetailActivity extends ActionBarActivity {
         if (extras != null) {
             int option = extras.getInt(ContentFragment.ARG_OPTION_NUMBER);
             int detail = extras.getInt(DetailFragment.ARG_DETAIL_NUMBER);
-            String title = "Option: " + option + ", Detail: " + detail;
+            String title = "Option: " + option + ", Detail: " + (detail + 1);
             getSupportActionBar().setTitle(title);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             TextView txtDetail = (TextView) findViewById(R.id.txtDetail);
-            txtDetail.setText("Detail " + detail);
+            txtDetail.setText("Detail " + (detail + 1));
         }
     }
 

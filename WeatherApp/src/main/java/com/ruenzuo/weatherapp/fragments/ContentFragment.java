@@ -29,7 +29,7 @@ public class ContentFragment extends ListFragment {
         String[] values = new String[20];
         int option = getArguments().getInt(ARG_OPTION_NUMBER);
         for (int i = 0; i < 20; i++) {
-            values[i] = "Option: " + (option + 1) + ", Content: " + (i + 1);
+            values[i] = "Option: " + (option + 1) + ", Detail: " + (i + 1);
         }
         ContentAdapter adapter = new ContentAdapter(getActivity(), Arrays.asList(values));
         setListAdapter(adapter);
