@@ -57,12 +57,15 @@ public class MainActivity extends ActionBarActivity implements ContentFragment.O
             setupDetailFragment();
         }
         if (savedInstanceState == null) {
-            onDrawerItemSelected(0);
+            selectDrawerItem(0);
         }
     }
 
     public void setupDetailFragment() {
         DetailFragment detailFragment = new DetailFragment();
+        Bundle contentArgs = new Bundle();
+        contentArgs.putInt(DetailFragment.ARG_DETAIL_NUMBER, 0);
+        detailFragment.setArguments(contentArgs);
         getSupportFragmentManager().beginTransaction().replace(R.id.detail_frame, detailFragment, "detailFragment").commit();
     }
 
@@ -91,7 +94,6 @@ public class MainActivity extends ActionBarActivity implements ContentFragment.O
         }
     }
 
-
     private void selectDrawerItem(int drawerItem) {
         currentOption = drawerItem;
         Fragment contentFragment = new ContentFragment();
@@ -107,19 +109,19 @@ public class MainActivity extends ActionBarActivity implements ContentFragment.O
 
     @Override
     public void onContentItemSelected(int contentItem) {
-//        DetailFragment fragment = (DetailFragment) getSupportFragmentManager().findFragmentByTag("detailFragment");
-//        if (fragment != null && fragment.isInLayout()) {
+        DetailFragment fragment = (DetailFragment) getSupportFragmentManager().findFragmentByTag("detailFragment");
+        if (fragment != null) {
             DetailFragment detailFragment = new DetailFragment();
             Bundle contentArgs = new Bundle();
             contentArgs.putInt(DetailFragment.ARG_DETAIL_NUMBER, contentItem);
             detailFragment.setArguments(contentArgs);
             getSupportFragmentManager().beginTransaction().replace(R.id.detail_frame, detailFragment, "detailFragment").commit();
-//        } else {
-//            Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
-//            intent.putExtra(ContentFragment.ARG_OPTION_NUMBER, currentOption);
-//            intent.putExtra(DetailFragment.ARG_DETAIL_NUMBER, contentItem);
-//            startActivity(intent);
-//        }
+        } else {
+            Intent intent = new Intent(getApplicationContext(), DetailActivity.class);
+            intent.putExtra(ContentFragment.ARG_OPTION_NUMBER, currentOption);
+            intent.putExtra(DetailFragment.ARG_DETAIL_NUMBER, contentItem);
+            startActivity(intent);
+        }
     }
 
     @Override

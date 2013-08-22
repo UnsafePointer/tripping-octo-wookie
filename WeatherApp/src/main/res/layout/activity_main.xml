@@ -15,6 +15,6 @@
         android:layout_width="@dimen/drawer_size"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        tools:layout="@layout/fragment_menu"/>
+        tools:layout="@layout/fragment_menu" />
 
 </android.support.v4.widget.DrawerLayout>
