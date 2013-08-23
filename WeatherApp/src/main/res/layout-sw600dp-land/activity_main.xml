@@ -3,12 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    android:background="#DDDDDD" >
 
     <fragment android:name="com.ruenzuo.weatherapp.fragments.DrawerFragment"
         android:id="@+id/drawer_fragment"
         android:layout_width="@dimen/drawer_size"
         android:layout_height="match_parent"
+        android:layout_margin="5dp"
         tools:layout="@layout/fragment_menu" />
 
     <LinearLayout
@@ -20,12 +22,14 @@
             android:id="@+id/content_frame"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:layout_margin="5dp"
             android:layout_height="match_parent" />
 
         <FrameLayout
             android:id="@+id/detail_frame"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:layout_margin="5dp"
             android:layout_height="match_parent" />
 
     </LinearLayout>
